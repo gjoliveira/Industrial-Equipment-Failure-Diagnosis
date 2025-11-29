@@ -1,0 +1,73 @@
+@prefix cnc: <http://example.org/cnc#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+cnc:CleanFilter a cnc:MaintenanceAction ;
+    cnc:affectsComponent cnc:Filter ;
+    cnc:cost "50"^^xsd:float ;
+    cnc:effort "1.5"^^xsd:float ;
+    cnc:mitigates cnc:CloggedFilter .
+
+cnc:FlushCoolant a cnc:MaintenanceAction ;
+    cnc:affectsComponent cnc:CoolingSystem ;
+    cnc:cost "90"^^xsd:float ;
+    cnc:effort "2.0"^^xsd:float ;
+    cnc:mitigates cnc:LowCoolingEfficiency .
+
+cnc:RepairFan a cnc:MaintenanceAction ;
+    cnc:affectsComponent cnc:Fan ;
+    cnc:cost "150"^^xsd:float ;
+    cnc:effort "2.0"^^xsd:float ;
+    cnc:mitigates cnc:FanFault .
+
+cnc:ReplaceBearing a cnc:MaintenanceAction ;
+    cnc:affectsComponent cnc:Bearing ;
+    cnc:cost "600"^^xsd:float ;
+    cnc:effort "6.0"^^xsd:float ;
+    cnc:mitigates cnc:BearingWearHigh .
+
+cnc:Spindle a cnc:Component ;
+    cnc:hasComponent cnc:Bearing .
+
+cnc:cost a owl:DatatypeProperty .
+
+cnc:manifestsAs a owl:ObjectProperty .
+
+cnc:BearingWearHigh a cnc:FailureMode ;
+    cnc:affectsComponent cnc:Bearing ;
+    cnc:manifestsAs cnc:HighVibration .
+
+cnc:CloggedFilter a cnc:FailureMode ;
+    cnc:affectsComponent cnc:Filter ;
+    cnc:manifestsAs cnc:LowCoolantFlow .
+
+cnc:FanFault a cnc:FailureMode ;
+    cnc:affectsComponent cnc:Fan ;
+    cnc:manifestsAs cnc:HighSpindleTemp .
+
+cnc:HighVibration a cnc:Symptom .
+
+cnc:LowCoolantFlow a cnc:Symptom .
+
+cnc:LowCoolingEfficiency a cnc:FailureMode ;
+    cnc:affectsComponent cnc:CoolingSystem ;
+    cnc:manifestsAs cnc:HighSpindleTemp .
+
+cnc:CoolingSystem a cnc:Component ;
+    cnc:hasComponent cnc:Fan,
+        cnc:Filter .
+
+cnc:HighSpindleTemp a cnc:Symptom .
+
+cnc:Bearing a cnc:Component .
+
+cnc:Fan a cnc:Component .
+
+cnc:Filter a cnc:Component .
+
+cnc:Symptom a owl:Class .
+
+cnc:FailureMode a owl:Class .
+
+cnc:Component a owl:Class .
+

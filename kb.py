@@ -1,0 +1,174 @@
+# Create the ontology schema file content directly
+ttl_content = """@prefix : <http://example.org/gjoli_diagnostics#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://example.org/cnc-diagnostics> .
+
+<http://example.org/cnc-diagnostics> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+# Property: affectsComponent
+:affectsComponent rdf:type owl:ObjectProperty ;
+                  rdfs:domain :FailureMode ;
+                  rdfs:range :Component .
+
+# Property: manifestsAs (Teacher's 'causesSymptom')
+:manifestsAs rdf:type owl:ObjectProperty ;
+             rdfs:domain :FailureMode ;
+             rdfs:range :Symptom .
+
+# Property: hasComponent (Transitive)
+:hasComponent rdf:type owl:ObjectProperty , owl:TransitiveProperty ;
+              rdfs:domain :Machine ;
+              rdfs:range :Component .
+
+# Property: partOf (Inverse)
+:partOf rdf:type owl:ObjectProperty ;
+        owl:inverseOf :hasComponent ;
+        rdfs:domain :Component ;
+        rdfs:range :Machine .
+
+# Property: hasEvent
+:hasEvent rdf:type owl:ObjectProperty ;
+          rdfs:domain :Machine ;
+          rdfs:range :Event .
+
+# Property: hasSymptom
+:hasSymptom rdf:type owl:ObjectProperty ;
+            rdfs:domain :Machine ;
+            rdfs:range :Symptom .
+
+# Property: mitigates (Teacher's 'mitigatesCause')
+:mitigates rdf:type owl:ObjectProperty ;
+           rdfs:domain :MaintenanceAction ;
+           rdfs:range :FailureMode .
+
+# Property: monitoredBy
+:monitoredBy rdf:type owl:ObjectProperty ;
+             rdfs:domain :Component ;
+             rdfs:range :Sensor .
+
+# Property: observes
+:observes rdf:type owl:ObjectProperty ;
+          rdfs:domain :Sensor ;
+          rdfs:range :ObservableEntity .
+
+# Property: observedBy (Inverse)
+:observedBy rdf:type owl:ObjectProperty ;
+            owl:inverseOf :observes ;
+            rdfs:domain :ObservableEntity ;
+            rdfs:range :Sensor .
+
+# Property: targetsComponent
+:targetsComponent rdf:type owl:ObjectProperty ;
+                  rdfs:domain :MaintenanceAction ;
+                  rdfs:range :Component .
+
+#################################################################
+#    Data Properties
+#################################################################
+
+:sparePartsCost rdf:type owl:DatatypeProperty ;
+                rdfs:domain :MaintenanceAction ;
+                rdfs:range xsd:float .
+
+:hasDurationHours rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :MaintenanceAction ;
+                  rdfs:range xsd:float .
+
+:hasTemperature rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Measurement ;
+                rdfs:range xsd:float .
+
+:hasVibration rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Measurement ;
+              rdfs:range xsd:float .
+
+:hasSeverityLevel rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Symptom ;
+                  rdfs:range xsd:string .
+
+:riskRating rdf:type owl:DatatypeProperty ;
+            rdfs:domain :FailureMode ;
+            rdfs:range xsd:integer .
+
+#################################################################
+#    Classes & Logic
+#################################################################
+
+# --- Main Classes ---
+:Machine rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasComponent ;
+                           owl:someValuesFrom :Component ] .
+
+:FailureMode rdf:type owl:Class .  # Teacher's "Cause"
+:MaintenanceAction rdf:type owl:Class . # Teacher's "Procedure"
+:Event rdf:type owl:Class .
+:Sensor rdf:type owl:Class .
+
+# --- Observable Entity & Children ---
+:ObservableEntity rdf:type owl:Class .
+
+:Component rdf:type owl:Class ;
+           rdfs:subClassOf :ObservableEntity .
+
+:Measurement rdf:type owl:Class ;
+             rdfs:subClassOf :ObservableEntity .
+
+# --- Component Subclasses ---
+:CoolingSystem rdf:type owl:Class ; rdfs:subClassOf :Component .
+:Fan rdf:type owl:Class ; rdfs:subClassOf :Component .
+:Filter rdf:type owl:Class ; rdfs:subClassOf :Component .
+:Spindle rdf:type owl:Class ; rdfs:subClassOf :Component .
+:BearingBlock rdf:type owl:Class ; rdfs:subClassOf :Component .
+
+# --- Sensor Subclasses ---
+:TempSensor rdf:type owl:Class ; rdfs:subClassOf :Sensor .
+:VibrationSensor rdf:type owl:Class ; rdfs:subClassOf :Sensor .
+
+# --- Symptom & Critical Logic ---
+:Symptom rdf:type owl:Class .
+
+:HighVibration rdf:type owl:Class ; rdfs:subClassOf :Symptom .
+:LowCoolantFlow rdf:type owl:Class ; rdfs:subClassOf :Symptom .
+:SpindleOverheat rdf:type owl:Class ; rdfs:subClassOf :Symptom .
+
+# LOGIC: CriticalSymptom = Symptom AND hasSeverityLevel "High"
+:CriticalSymptom rdf:type owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf ( :Symptom
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :hasSeverityLevel ;
+                                                 owl:hasValue "High" ]
+                                             ) ;
+                          rdf:type owl:Class ] .
+
+# LOGIC: CostlyRepair = MaintenanceAction AND cost >= 500.0
+:CostlyRepair rdf:type owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf ( :MaintenanceAction
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :sparePartsCost ;
+                                                 owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                      owl:onDatatype xsd:float ;
+                                                                      owl:withRestrictions ( [ xsd:minInclusive "500.0"^^xsd:float ] ) ] ]
+                                             ) ;
+                          rdf:type owl:Class ] .
+"""
+
+# Save to file
+filename = "ontology_schema.ttl"
+with open(filename, "w") as f:
+    f.write(ttl_content)
+
+print(f"SUCCESS: '{filename}' created!")
+print("Instructions:")
+print("1. Open Protegé.")
+print(f"2. File -> Open -> Select '{filename}'")
+print("3. (Optional) Run Reasoner to check structure.")
+print("4. Proceed to import your Python Data file.")

@@ -1,0 +1,62 @@
+@prefix gjoli: <http://example.org/gjoli_diagnostics#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+gjoli:CNC_Machine_01 a gjoli:Machine ;
+    gjoli:hasComponent gjoli:CoolingSystem,
+        gjoli:Spindle ;
+    gjoli:hasSymptom gjoli:SpindleOverheat .
+
+gjoli:CleanFilter a gjoli:MaintenanceAction ;
+    gjoli:hasDurationHours "1.5"^^xsd:float ;
+    gjoli:mitigates gjoli:CloggedFilter ;
+    gjoli:sparePartsCost "50"^^xsd:float .
+
+gjoli:FlushCoolant a gjoli:MaintenanceAction ;
+    gjoli:hasDurationHours "2.0"^^xsd:float ;
+    gjoli:mitigates gjoli:LowCoolingEfficiency ;
+    gjoli:sparePartsCost "90"^^xsd:float .
+
+gjoli:RepairFan a gjoli:MaintenanceAction ;
+    gjoli:hasDurationHours "2.0"^^xsd:float ;
+    gjoli:mitigates gjoli:FanFault ;
+    gjoli:sparePartsCost "150"^^xsd:float .
+
+gjoli:ReplaceBearing a gjoli:MaintenanceAction ;
+    gjoli:hasDurationHours "6.0"^^xsd:float ;
+    gjoli:mitigates gjoli:BearingWearHigh ;
+    gjoli:sparePartsCost "600"^^xsd:float .
+
+gjoli:BearingWearHigh gjoli:affectsComponent gjoli:Bearing ;
+    gjoli:manifestsAs gjoli:HighVibration .
+
+gjoli:CloggedFilter gjoli:affectsComponent gjoli:Filter ;
+    gjoli:manifestsAs gjoli:LowCoolantFlow .
+
+gjoli:FanFault gjoli:affectsComponent gjoli:Fan ;
+    gjoli:manifestsAs gjoli:HighSpindleTemp .
+
+gjoli:HighVibration a gjoli:Symptom ;
+    gjoli:hasSeverityLevel "High"^^xsd:string .
+
+gjoli:LowCoolantFlow a gjoli:Symptom ;
+    gjoli:hasSeverityLevel "Low"^^xsd:string .
+
+gjoli:LowCoolingEfficiency gjoli:affectsComponent gjoli:CoolingSystem ;
+    gjoli:manifestsAs gjoli:HighSpindleTemp .
+
+gjoli:Spindle a gjoli:Component ;
+    gjoli:hasComponent gjoli:Bearing .
+
+gjoli:Bearing a gjoli:Component .
+
+gjoli:CoolingSystem a gjoli:Component ;
+    gjoli:hasComponent gjoli:Fan,
+        gjoli:Filter .
+
+gjoli:Fan a gjoli:Component .
+
+gjoli:Filter a gjoli:Component .
+
+gjoli:HighSpindleTemp a gjoli:Symptom ;
+    gjoli:hasSeverityLevel "High"^^xsd:string .
+

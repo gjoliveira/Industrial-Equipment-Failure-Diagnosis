@@ -6,71 +6,30 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
 >
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#BearingWearHigh">
-    <gjoli:affectsComponent rdf:resource="http://example.org/gjoli_diagnostics#Bearing"/>
-    <gjoli:manifestsAs rdf:resource="http://example.org/gjoli_diagnostics#HighVibration"/>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#RepairFan">
+    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
+    <gjoli:hasDurationHours rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.0</gjoli:hasDurationHours>
+    <gjoli:mitigates rdf:resource="http://example.org/gjoli_diagnostics#FanFault"/>
+    <gjoli:sparePartsCost rdf:datatype="http://www.w3.org/2001/XMLSchema#float">150.0</gjoli:sparePartsCost>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Filter">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://example.org/gjoli_diagnostics#hasComponent"/>
+    <owl:someValuesFrom rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Bearing">
     <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
-    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#ObservableEntity">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://example.org/gjoli_diagnostics#hasSeverityLevel"/>
+    <owl:hasValue>High</owl:hasValue>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#FanFault">
-    <gjoli:affectsComponent rdf:resource="http://example.org/gjoli_diagnostics#Fan"/>
-    <gjoli:manifestsAs rdf:resource="http://example.org/gjoli_diagnostics#HighSpindleTemp"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#targetsComponent">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
-    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasTemperature">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Measurement"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#CNC_Machine_01">
-    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Machine"/>
-    <gjoli:hasComponent rdf:resource="http://example.org/gjoli_diagnostics#CoolingSystem"/>
-    <gjoli:hasComponent rdf:resource="http://example.org/gjoli_diagnostics#Spindle"/>
-    <gjoli:hasSymptom rdf:resource="http://example.org/gjoli_diagnostics#SpindleOverheat"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#sparePartsCost">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Measurement">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#ObservableEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#monitoredBy">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
-    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Sensor"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#observes">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Sensor"/>
-    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#ObservableEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasComponent">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Machine"/>
-    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b8">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-    <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-    <owl:withRestrictions rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b10"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b12">
-    <rdf:first rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b7"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#CleanFilter">
+    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
+    <gjoli:hasDurationHours rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.5</gjoli:hasDurationHours>
+    <gjoli:mitigates rdf:resource="http://example.org/gjoli_diagnostics#CloggedFilter"/>
+    <gjoli:sparePartsCost rdf:datatype="http://www.w3.org/2001/XMLSchema#float">50.0</gjoli:sparePartsCost>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Spindle">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -78,17 +37,18 @@
     <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
     <gjoli:hasComponent rdf:resource="http://example.org/gjoli_diagnostics#Bearing"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b5">
-    <rdf:first rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b3"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#OverheatedMachine">
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#CoolingSystem">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:equivalentClass rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b13"/>
+    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+    <gjoli:hasComponent rdf:resource="http://example.org/gjoli_diagnostics#Fan"/>
+    <gjoli:hasComponent rdf:resource="http://example.org/gjoli_diagnostics#Filter"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b10">
-    <rdf:first rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b9"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#partOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="http://example.org/gjoli_diagnostics#hasComponent"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Machine"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#observedBy">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -96,25 +56,113 @@
     <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#ObservableEntity"/>
     <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Sensor"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#manifestsAs">
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b13">
+    <owl:intersectionOf rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b15"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasEvent">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#FailureMode"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Machine"/>
+    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Event"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Fan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b8">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <owl:withRestrictions rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b10"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b10">
+    <rdf:first rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b9"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasSymptom">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Machine"/>
     <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b6">
-    <owl:intersectionOf rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b11"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#CostlyRepair">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:equivalentClass rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b6"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b14">
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b14">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:onProperty rdf:resource="http://example.org/gjoli_diagnostics#hasSymptom"/>
     <owl:hasValue rdf:resource="http://example.org/gjoli_diagnostics#SpindleOverheat"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#VibrationSensor">
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#FanFault">
+    <gjoli:affectsComponent rdf:resource="http://example.org/gjoli_diagnostics#Fan"/>
+    <gjoli:manifestsAs rdf:resource="http://example.org/gjoli_diagnostics#HighSpindleTemp"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#affectsComponent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#FailureMode"/>
+    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#CNC_Machine_01">
+    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Machine"/>
+    <gjoli:hasComponent rdf:resource="http://example.org/gjoli_diagnostics#CoolingSystem"/>
+    <gjoli:hasComponent rdf:resource="http://example.org/gjoli_diagnostics#Spindle"/>
+    <gjoli:hasSymptom rdf:resource="http://example.org/gjoli_diagnostics#SpindleOverheat"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b7">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://example.org/gjoli_diagnostics#sparePartsCost"/>
+    <owl:someValuesFrom rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b8"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Filter">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasTemperature">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Measurement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#mitigates">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
+    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#FailureMode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#targetsComponent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
+    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#riskRating">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#FailureMode"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#LowCoolantFlow">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
+    <gjoli:hasSeverityLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Low</gjoli:hasSeverityLevel>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b4">
+    <rdf:first rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
+    <rdf:rest rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b5"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#monitoredBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Sensor"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#CriticalSymptom">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:equivalentClass rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#HighSpindleTemp">
+    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
+    <gjoli:hasSeverityLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High</gjoli:hasSeverityLevel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasSeverityLevel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#TempSensor">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Sensor"/>
   </rdf:Description>
@@ -124,64 +172,79 @@
     <gjoli:mitigates rdf:resource="http://example.org/gjoli_diagnostics#LowCoolingEfficiency"/>
     <gjoli:sparePartsCost rdf:datatype="http://www.w3.org/2001/XMLSchema#float">90.0</gjoli:sparePartsCost>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#partOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="http://example.org/gjoli_diagnostics#hasComponent"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
-    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Machine"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#HighSpindleTemp">
-    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
-    <gjoli:hasSeverityLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High</gjoli:hasSeverityLevel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#LowCoolingEfficiency">
-    <gjoli:affectsComponent rdf:resource="http://example.org/gjoli_diagnostics#CoolingSystem"/>
-    <gjoli:manifestsAs rdf:resource="http://example.org/gjoli_diagnostics#HighSpindleTemp"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b2">
-    <owl:intersectionOf rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b4"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#mitigates">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
-    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#FailureMode"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#HighVibration">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
     <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
     <gjoli:hasSeverityLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High</gjoli:hasSeverityLevel>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasSeverityLevel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b5">
+    <rdf:first rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b3"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasEvent">
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#BearingBlock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b16">
+    <rdf:first rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b14"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#FailureMode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#BearingWearHigh">
+    <gjoli:affectsComponent rdf:resource="http://example.org/gjoli_diagnostics#Bearing"/>
+    <gjoli:manifestsAs rdf:resource="http://example.org/gjoli_diagnostics#HighVibration"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Symptom">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Sensor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#OverheatedMachine">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:equivalentClass rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b13"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#manifestsAs">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Machine"/>
-    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Event"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#CleanFilter">
-    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
-    <gjoli:hasDurationHours rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.5</gjoli:hasDurationHours>
-    <gjoli:mitigates rdf:resource="http://example.org/gjoli_diagnostics#CloggedFilter"/>
-    <gjoli:sparePartsCost rdf:datatype="http://www.w3.org/2001/XMLSchema#float">50.0</gjoli:sparePartsCost>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#CloggedFilter">
-    <gjoli:affectsComponent rdf:resource="http://example.org/gjoli_diagnostics#Filter"/>
-    <gjoli:manifestsAs rdf:resource="http://example.org/gjoli_diagnostics#LowCoolantFlow"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasSymptom">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Machine"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#FailureMode"/>
     <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#riskRating">
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#SpindleOverheat">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasDurationHours">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#FailureMode"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#ObservableEntity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b11">
+    <rdf:first rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
+    <rdf:rest rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b12"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#CostlyRepair">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:equivalentClass rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b6"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasComponent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Machine"/>
+    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Component">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#ObservableEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b12">
+    <rdf:first rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b7"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#ReplaceBearing">
     <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
@@ -189,126 +252,63 @@
     <gjoli:mitigates rdf:resource="http://example.org/gjoli_diagnostics#BearingWearHigh"/>
     <gjoli:sparePartsCost rdf:datatype="http://www.w3.org/2001/XMLSchema#float">600.0</gjoli:sparePartsCost>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Symptom">
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#VibrationSensor">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b1">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:onProperty rdf:resource="http://example.org/gjoli_diagnostics#hasComponent"/>
-    <owl:someValuesFrom rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b4">
-    <rdf:first rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
-    <rdf:rest rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b5"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#CoolingSystem">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
-    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
-    <gjoli:hasComponent rdf:resource="http://example.org/gjoli_diagnostics#Fan"/>
-    <gjoli:hasComponent rdf:resource="http://example.org/gjoli_diagnostics#Filter"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasDurationHours">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Machine">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b1"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b16">
-    <rdf:first rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b14"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Component">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#ObservableEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Fan">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
-    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#RepairFan">
-    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
-    <gjoli:hasDurationHours rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.0</gjoli:hasDurationHours>
-    <gjoli:mitigates rdf:resource="http://example.org/gjoli_diagnostics#FanFault"/>
-    <gjoli:sparePartsCost rdf:datatype="http://www.w3.org/2001/XMLSchema#float">150.0</gjoli:sparePartsCost>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#affectsComponent">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#FailureMode"/>
-    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Bearing">
-    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Sensor"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#hasVibration">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Measurement"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b11">
-    <rdf:first rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
-    <rdf:rest rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b12"/>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#LowCoolingEfficiency">
+    <gjoli:affectsComponent rdf:resource="http://example.org/gjoli_diagnostics#CoolingSystem"/>
+    <gjoli:manifestsAs rdf:resource="http://example.org/gjoli_diagnostics#HighSpindleTemp"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b15">
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b9">
+    <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">500.0</xsd:minInclusive>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b6">
+    <owl:intersectionOf rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b11"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b2">
+    <owl:intersectionOf rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b4"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b15">
     <rdf:first rdf:resource="http://example.org/gjoli_diagnostics#Machine"/>
-    <rdf:rest rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b16"/>
+    <rdf:rest rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b16"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#observes">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#Sensor"/>
+    <rdfs:range rdf:resource="http://example.org/gjoli_diagnostics#ObservableEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#CloggedFilter">
+    <gjoli:affectsComponent rdf:resource="http://example.org/gjoli_diagnostics#Filter"/>
+    <gjoli:manifestsAs rdf:resource="http://example.org/gjoli_diagnostics#LowCoolantFlow"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Machine">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="nd80fec1cf6bd49aca6683a39d0b0dc91b1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Measurement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#ObservableEntity"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/gjoli_diagnostics">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b7">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:onProperty rdf:resource="http://example.org/gjoli_diagnostics#sparePartsCost"/>
-    <owl:someValuesFrom rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b8"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b9">
-    <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">500.0</xsd:minInclusive>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#BearingBlock">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Component"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#LowCoolantFlow">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdf:type rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
-    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
-    <gjoli:hasSeverityLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Low</gjoli:hasSeverityLevel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Sensor">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#TempSensor">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Sensor"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b13">
-    <owl:intersectionOf rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b15"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#SpindleOverheat">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://example.org/gjoli_diagnostics#Symptom"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#CriticalSymptom">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:equivalentClass rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b2"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#FailureMode">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nea02f0c4f8034bcda574c860b1f6ff31b3">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
-    <owl:onProperty rdf:resource="http://example.org/gjoli_diagnostics#hasSeverityLevel"/>
-    <owl:hasValue>High</owl:hasValue>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#Event">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#MaintenanceAction">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/gjoli_diagnostics#sparePartsCost">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/gjoli_diagnostics#MaintenanceAction"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
   </rdf:Description>
 </rdf:RDF>

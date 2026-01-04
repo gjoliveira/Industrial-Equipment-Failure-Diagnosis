@@ -17,7 +17,7 @@
                   rdfs:domain :FailureMode ;
                   rdfs:range :Component .
 
-# Property: manifestsAs (Teacher's 'causesSymptom')
+# Property: manifestsAs 
 :manifestsAs rdf:type owl:ObjectProperty ;
              rdfs:domain :FailureMode ;
              rdfs:range :Symptom .
@@ -43,7 +43,7 @@
             rdfs:domain :Machine ;
             rdfs:range :Symptom .
 
-# Property: mitigates (Teacher's 'mitigatesCause')
+# Property: mitigates 
 :mitigates rdf:type owl:ObjectProperty ;
            rdfs:domain :MaintenanceAction ;
            rdfs:range :FailureMode .

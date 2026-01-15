@@ -33,10 +33,7 @@
         rdfs:domain :Component ;
         rdfs:range :Machine .
 
-# Property: hasEvent
-:hasEvent rdf:type owl:ObjectProperty ;
-          rdfs:domain :Machine ;
-          rdfs:range :Event .
+
 
 # Property: hasSymptom
 :hasSymptom rdf:type owl:ObjectProperty ;
@@ -109,8 +106,7 @@
 
 :FailureMode rdf:type owl:Class .
 :MaintenanceAction rdf:type owl:Class .
-:Event rdf:type owl:Class .
-:Sensor rdf:type owl:Class .
+
 
 # --- Observable Entity & Children ---
 :ObservableEntity rdf:type owl:Class .
@@ -128,11 +124,10 @@
 :Spindle rdf:type owl:Class ; rdfs:subClassOf :Component .
 :BearingBlock rdf:type owl:Class ; rdfs:subClassOf :Component .
 
-# --- Sensor Subclasses ---
-:TempSensor rdf:type owl:Class ; rdfs:subClassOf :Sensor .
-:VibrationSensor rdf:type owl:Class ; rdfs:subClassOf :Sensor .
+
 
 # --- Symptom & Critical Logic ---
+# USED MERELY FOR TESTING THE ROBUSTNESS OF THE ONTOLOGY. NOT USED ON FURTHER STEPS OF THE PROJECT
 :Symptom rdf:type owl:Class .
 
 :HighVibration rdf:type owl:Class ; rdfs:subClassOf :Symptom .

@@ -1,6 +1,13 @@
 @prefix gjoli: <http://example.org/gjoli_diagnostics#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+
+gjoli:Fan a gjoli:Component .
+
+gjoli:Filter a gjoli:Component .
+
+gjoli:Bearing a gjoli:Component .
+
 gjoli:CNC_Machine_01 a gjoli:Machine ;
     gjoli:hasComponent gjoli:CoolingSystem,
         gjoli:Spindle ;
@@ -35,11 +42,6 @@ gjoli:CloggedFilter gjoli:affectsComponent gjoli:Filter ;
 gjoli:FanFault gjoli:affectsComponent gjoli:Fan ;
     gjoli:manifestsAs gjoli:HighSpindleTemp .
 
-gjoli:HighVibration a gjoli:Symptom ;
-    gjoli:hasSeverityLevel "High"^^xsd:string .
-
-gjoli:LowCoolantFlow a gjoli:Symptom ;
-    gjoli:hasSeverityLevel "Low"^^xsd:string .
 
 gjoli:LowCoolingEfficiency gjoli:affectsComponent gjoli:CoolingSystem ;
     gjoli:manifestsAs gjoli:HighSpindleTemp .
@@ -47,15 +49,17 @@ gjoli:LowCoolingEfficiency gjoli:affectsComponent gjoli:CoolingSystem ;
 gjoli:Spindle a gjoli:Component ;
     gjoli:hasComponent gjoli:Bearing .
 
-gjoli:Bearing a gjoli:Component .
 
 gjoli:CoolingSystem a gjoli:Component ;
     gjoli:hasComponent gjoli:Fan,
         gjoli:Filter .
 
-gjoli:Fan a gjoli:Component .
+gjoli:HighVibration a gjoli:Symptom ;
+    gjoli:hasSeverityLevel "High"^^xsd:string .
 
-gjoli:Filter a gjoli:Component .
+gjoli:LowCoolantFlow a gjoli:Symptom ;
+    gjoli:hasSeverityLevel "Low"^^xsd:string .
+
 
 gjoli:HighSpindleTemp a gjoli:Symptom ;
     gjoli:hasSeverityLevel "High"^^xsd:string .

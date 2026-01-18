@@ -105,22 +105,25 @@ def process_evidence(inputs):
     val_flow = inputs.get('coolant_flow')
 
     # Process Spindle Temperature
-    if isinstance(val_temp, (int, float, np.number)):
-        evidence['SpindleTemp'] = bn_codes.spindle_temp_bin(val_temp)
-    else:
-        evidence['SpindleTemp'] = val_temp
+    if val_temp is not None and val_temp != "None":
+        if isinstance(val_temp, (int, float, np.number)):
+            evidence['SpindleTemp'] = bn_codes.spindle_temp_bin(val_temp)
+        else:
+            evidence['SpindleTemp'] = val_temp
 
     # Process Vibration
-    if isinstance(val_vib, (int, float, np.number)):
-        evidence['Vibration'] = bn_codes.vibration_rms_bin(val_vib)
-    else:
-        evidence['Vibration'] = val_vib
+    if val_vib is not None and val_vib != "None":
+        if isinstance(val_vib, (int, float, np.number)):
+            evidence['Vibration'] = bn_codes.vibration_rms_bin(val_vib)
+        else:
+            evidence['Vibration'] = val_vib
 
     # Process Coolant Flow
-    if isinstance(val_flow, (int, float, np.number)):
-        evidence['CoolantFlow'] = bn_codes.coolant_flow_bin(val_flow)
-    else:
-        evidence['CoolantFlow'] = val_flow
+    if val_flow is not None and val_flow != "None":
+        if isinstance(val_flow, (int, float, np.number)):
+            evidence['CoolantFlow'] = bn_codes.coolant_flow_bin(val_flow)
+        else:
+            evidence['CoolantFlow'] = val_flow
         
     return evidence
 
@@ -230,9 +233,9 @@ def main():
             c = st.sidebar.slider("Coolant Flow (L/min)", 0.0, 5.0, 1.0)
         else:
             # Dropdowns for discrete states
-            t = st.sidebar.selectbox("Spindle Temperature", ["low", "moderate", "high"], index=1)
-            v = st.sidebar.selectbox("Vibration RMS", ["low", "moderate", "high"], index=1)
-            c = st.sidebar.selectbox("Coolant Flow", ["low", "moderate", "high"], index=1)
+            t = st.sidebar.selectbox("Spindle Temperature", ["None", "low", "moderate", "high"], index=0)
+            v = st.sidebar.selectbox("Vibration RMS", ["None", "low", "moderate", "high"], index=0)
+            c = st.sidebar.selectbox("Coolant Flow", ["None", "low", "moderate", "high"], index=0)
         
         inputs = {
             'spindle_temp': t,

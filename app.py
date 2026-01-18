@@ -305,11 +305,15 @@ def main():
             }
             
             # Show the selected parameters
+            d_t = bn_codes.spindle_temp_bin(inputs['spindle_temp'])
+            d_v = bn_codes.vibration_rms_bin(inputs['vibration_rms'])
+            d_c = bn_codes.coolant_flow_bin(inputs['coolant_flow'])
+
             st.sidebar.info(f"""
             **Current Values:**
-            - Temp: {inputs['spindle_temp']:.2f}
-            - Vib: {inputs['vibration_rms']:.2f}
-            - Flow: {inputs['coolant_flow']:.2f}
+            - Temp: {inputs['spindle_temp']:.2f} ({d_t})
+            - Vib: {inputs['vibration_rms']:.2f} ({d_v})
+            - Flow: {inputs['coolant_flow']:.2f} ({d_c})
             """)
     
     # 2. Diagnosis Section (Vertical Layout)
